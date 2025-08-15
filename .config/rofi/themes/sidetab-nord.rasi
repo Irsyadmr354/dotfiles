@@ -1,7 +1,6 @@
 * {
-/*    background: #1e222a; */
-    background: #1a2639;
-    foreground: #E5E9F0;
+    background: #3B4252;
+    foreground: #FFFFFF;
     border-color: @background;
     bg-selected: #282c34;
     grey: #565c64;
@@ -14,18 +13,17 @@
 #window {
     background-color: @background;
     border: 0;
-    border-radius: 10px;
     padding: 0;
-    location: north;
-    anchor: north;
-    height: 50%;
-    margin: 45px;
+    location: west;
+    anchor: west;
+    height: 100%;
+    margin: 0;
 }
 
 #mainbox {
     background-color: @background;
-    spacing: 5px;
-    margin: 5px 0 0 0;
+    spacing: 10px;
+    margin: 10px 0 0 0;
     width: 200px;
 }
 
@@ -41,16 +39,14 @@
 }
 
 #element {
-    padding: 0 0 5px;
+    padding: 5px;
     background-color: @background;
     text-color: @foreground;
 }
 
 element selected {
-/*    background-color: @bg-selected; */
-    background-color: cyan;
-/*    text-color: @foreground; */
-    text-color: black;
+    background-color: @bg-selected;
+    text-color: @foreground;
 }
 
 element-text {
@@ -77,6 +73,5 @@ element-icon {
    padding: 0 4px;
    margin: 0 5px 0 0;
    text-color: @foreground;
-   font: "Sora Regular 20";
+   font: "Sora Regular 15";
 }
-

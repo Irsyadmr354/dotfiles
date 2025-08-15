@@ -1,19 +1,15 @@
-# Mute
-"pamixer -t"
+"~/.scripts/volume-toggle.sh"
     XF86AudioMute
 
-# Volume down
-"pamixer -d 5"
+"~/.scripts/volume-down.sh"
     XF86AudioLowerVolume
 
-# Volume up
-"pamixer -i 5"
+"~/.scripts/volume-up.sh"
     XF86AudioRaiseVolume
 
-# Brightness down
-"brightnessctl set 10%-"
+"~/.scripts/brightness-down.sh"
     XF86MonBrightnessDown
 
-# Brightness up
-"brightnessctl set +10%"
+"~/.scripts/brightness-up.sh"
     XF86MonBrightnessUp
+

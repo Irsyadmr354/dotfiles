@@ -1,6 +1,3 @@
 export XCURSOR_THEME=Adwaita
 export XCURSOR_SIZE=24
 
-# tambahkan ini agar root window ikut pakai cursor
-xsetroot -cursor_name left_ptr
-

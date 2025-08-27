@@ -1,0 +1,236 @@
+[colors]
+#background = #3B4252
+background = #000000
+background-alt = #3B4252
+foreground = #FFFFFF
+primary = #1793D1
+secondary = #666666
+alert = #FF5555
+disabled = #444444
+urgent = #FF0000
+success = #00FF00
+warning = #FFFF00
+
+[bar/bar]
+width = 100%
+height = 22pt
+; radius = 10pt  // Changed to make the border rounded
+; dpi = 96
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;line-size = 2pt
+
+#border-top-size = 4pt
+#border-bottom-size = 0pt
+#border-left-size = 8pt
+#border-right-size = 8pt
+#border-color = #00000000
+
+padding-left = 1
+padding-right = 1
+
+module-margin = 1
+
+;separator = |
+;separator-foreground = ${colors.disabled}
+
+font-0 = Hack Nerd Font:size=14;2
+
+modules-left = archlogo xworkspaces
+modules-center = xwindow
+modules-right = wlan pulseaudio brightness date
+
+cursor-click = default
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+; tray-position = right
+
+; wm-restack = generic
+; wm-restack = bspwm
+; wm-restack = i3
+
+; override-redirect = true
+
+[module/archlogo]
+type = custom/text 
+;format = %{F#1793D1}%{F-}
+format = 
+click-left = rofi -show drun
+label-padding = 1
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active-foreground = #ffffff
+label-active = 
+label-active-padding = 1
+
+label-occupied = 
+label-occupied-foreground = #ffffff
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+label-foreground = ${colors.foreground}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.primary}
+format-volume = <label-volume>
+
+label-volume = %percentage%%
+
+label-muted = 󰖁 Muted
+label-muted-foreground = ${colors.foreground}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+label-numlock = Num Lock
+label-numlock-foreground = ${colors.primary}
+
+; label-layout = %layout%
+; label-layout-foreground = ${colors.primary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-foreground = ${colors.background}
+label-indicator-background = ${colors.secondary}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "󰍛 "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used:2%%
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "󰻠 "
+format-prefix-foreground = ${colors.primary}
+label = %percentage:2%%
+
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+
+[module/wlan]
+inherit = network-base
+interface-type = wireless
+label-connected = %{F#F0C674}%{F-}  %essid%
+
+[module/battery]
+type = internal/battery
+full-at = 99
+low-at = 5
+battery = BAT1
+adapter = ACAD
+label-charging = Charging %percentage%%
+label-low = BATTERY LOW
+label-full = Fully charged
+
+
+[module/date]
+type = internal/date
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+date = %H:%M
+;date = %H:%M %d/%m/%Y
+label = %date%
+label-foreground = ${colors.foreground}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = ""
+label-open-foreground = ${colors.urgent}
+label-close = "󰑚 Cancel"
+label-close-foreground = ${colors.success}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+; Powermenu
+menu-0-0 = " Reboot"
+menu-0-0-exec = #powermenu.open.1
+menu-0-0-foreground = ${colors.urgent}
+
+menu-0-1 = "⏻ Power Off"
+menu-0-1-exec = #powermenu.open.2
+menu-0-1-foreground = ${colors.urgent}
+
+menu-0-2 = "󰒲 Hibernate"
+menu-0-2-exec = #powermenu.open.3
+menu-0-2-foreground = ${colors.warning}
+
+; Reboot
+menu-1-0 = "󰑚 Back"
+menu-1-0-exec = #powermenu.open.0
+menu-1-0-foreground = ${colors.success}
+menu-1-1 = " Reboot"
+menu-1-1-exec = systemctl reboot
+menu-1-1-foreground = ${colors.urgent}
+
+; Shutdown
+menu-2-0 = "⏻ Power off"
+menu-2-0-exec = systemctl poweroff
+menu-2-0-foreground = ${colors.urgent}
+menu-2-1 = "󰑚 Back"
+menu-2-1-exec = #powermenu.open.0
+menu-2-1-foreground = ${colors.success}
+
+; Hibernate
+menu-3-0 = "󰒲 Hibernate"
+menu-3-0-exec = systemctl hibernate
+menu-3-0-foreground = ${colors.urgent}
+menu-3-1 = "󰑚 Back"
+menu-3-1-exec = #powermenu.open.0
+menu-3-1-foreground = ${colors.success}
+
+[module/brightness]
+type = custom/script
+exec = bash -c 'current=$(brightnessctl get); max=$(brightnessctl max); echo "$(( current * 100 / max ))%"'
+interval = 1
+label = %{F#F0C674}󰖨%{F-} %output%
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+; vim:ft=dosini
